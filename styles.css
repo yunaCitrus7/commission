@@ -168,7 +168,8 @@ a[target="_blank"]::after{content:"↗"; margin-left:6px; font-size:.9em; opacit
 }
 
 .price-left {
-  flex: 0 0 40%;         /* hard cap the left column */
+  flex: 0 0 50%;         /* hard cap the left column */
+  max-width: 50%;
 }
 
 .price-right {
@@ -181,17 +182,21 @@ a[target="_blank"]::after{content:"↗"; margin-left:6px; font-size:.9em; opacit
   width: 100%;
   margin: 0 !important;    /* override any theme margin */
 }
-.mini-splide .splide__track { border-radius: 10px; overflow: hidden; }
+.mini-splide .splide__track { border-radius: 10px; overflow: hidden; color:var(--accent-2)}
 .mini-splide .splide__list  { margin: 0 !important; }
-.mini-splide .splide__slide { padding: 0 !important; }
+.mini-splide .splide__slide {
+  display: flex !important;          /* override Splide’s block/grid */
+  align-items: center;               /* vertical centering */
+  justify-content: center;           /* horizontal centering */
+  padding: 0 !important;
+}
 
 /* Keep the thumb tidy */
 .mini-splide img.price-thumb {
-height:300px;
-  object-fit: cover;
-  display: block;
-  border: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
-  box-shadow: var(--shadow);
+  max-height: 100%;                  /* prevent overflow */
+  max-width: 100%;
+  object-fit: cover;                /* show whole image without cropping */
+  border-radius: 8px;
 }
 
 /* Keep arrows from affecting layout (they’re abs-pos anyway) */
@@ -200,7 +205,20 @@ height:300px;
   background: color-mix(in srgb, var(--surface) 85%, black 15%);
   border: 1px solid color-mix(in srgb, var(--muted) 25%, transparent);
 }
+.mini-splide .splide__pagination button {
+  background: color-mix(in srgb, var(--muted) 40%, transparent); /* default (inactive) */
+  opacity: 1;           /* override Splide's opacity */
+  width: 10px;
+  height: 10px;
+  margin: 4px;
+  border-radius: 50%;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
 
+.mini-splide .splide__pagination button.is-active {
+  background: var(--accent);   /* active dot color */
+  transform: scale(1.3);       /* enlarge active dot slightly */
+}
 /* Make the header sticky by default */
 .site-header {
   position: sticky;
@@ -331,4 +349,10 @@ section[id] { scroll-margin-top: var(--sticky-offset, 72px); }
     border: 1px solid color-mix(in srgb, var(--muted) 18%, transparent);
     background: color-mix(in srgb, var(--surface) 96%, white 4%);
   }
+}
+
+.glightbox{
+
+  width:300px;
+
 }
