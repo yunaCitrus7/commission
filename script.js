@@ -102,3 +102,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// GLightbox with scroll lock (prevents mobile jump-to-top)
+document.addEventListener('DOMContentLoaded', () => {
+  if (!window.GLightbox) return;
+
+  let scrollY = 0;
+
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    hash: false,            // don't change URL, avoids browser restoring to top
+    openEffect: 'zoom',
+    closeEffect: 'zoom',
+    autoplayVideos: false,
+  });
+
+  const lockBody = () => {
+    // remember current scroll
+    scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    // lock the page in place
+    document.body.classList.add('lb-lock');
+    document.body.style.top = `-${scrollY}px`;
+    // disable smooth scroll to avoid extra movement during open/close
+    document.documentElement.style.scrollBehavior = 'auto';
+  };
+
+  const unlockBody = () => {
+    document.body.classList.remove('lb-lock');
+    document.body.style.top = '';
+    // restore scroll
+    window.scrollTo(0, scrollY);
+    // re-enable smooth scroll if you use it elsewhere
+    requestAnimationFrame(() => {
+      document.documentElement.style.scrollBehavior = '';
+    });
+  };
+
+  lightbox.on('open', lockBody);
+  lightbox.on('close', unlockBody);
+});

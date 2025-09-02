@@ -286,11 +286,11 @@ section[id] { scroll-margin-top: var(--sticky-offset, 72px); }
   .price-left  { order: 2; flex: 0 0 auto; max-width: 100%; }
 
   /* Make the slider full width inside the card */
-  .mini-splide { width: 100%; }
+  .mini-splide {width: 100%; }
   .mini-splide img.price-thumb {
-    width: 100%;
-    aspect-ratio: 4 / 3;     /* taller preview on mobile */
-    height: auto;
+    width:100%
+   
+    
   }
 }
 
@@ -324,35 +324,81 @@ section[id] { scroll-margin-top: var(--sticky-offset, 72px); }
   .hamburger[aria-expanded="true"] span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
   .hamburger[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
   .hamburger[aria-expanded="true"] span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+}
 
-  /* Hide the nav by default; slide down when open */
+@media (max-width: 720px) {
   .nav {
+    flex-direction: column;
+align-items: center;
+text-align: center;
     position: fixed;
+    gap:10px;
     top: var(--sticky-offset, 64px);
     left: 0; right: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 12px;
-    background: color-mix(in srgb, var(--bg) 92%, white 8%);
-    border-bottom: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
-    transform: translateY(-120%);
-    transition: transform .25s ease;
     z-index: 999;
-  }
-  .nav.is-open { transform: translateY(0); }
 
-  /* Mobile link look */
+    /* visual */
+    background: color-mix(in srgb, var(--bg) 92%, white 8%);
+    border-bottom: 0;           /* no border when closed */
+    box-shadow: none;
+
+    /* collapse closed state COMPLETELY */
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    max-height: 0;
+    padding-block: 0;           /* kill top/bottom padding */
+    overflow: hidden;
+
+    transition:
+      transform .25s ease,
+      opacity .2s ease,
+      visibility 0s linear .25s,
+      max-height .25s ease,
+      padding-block .25s ease;
+  }
+
+  .nav.is-open {
+    display: flex;;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    max-height: 80vh;
+    padding-block: 12px;        /* restore padding only when open */
+    border-bottom: 1px solid color-mix(in srgb, var(--muted) 20%, transparent);
+    overflow: auto;
+    transition:
+      transform .25s ease,
+      opacity .2s ease,
+      visibility 0s,
+      max-height .25s ease,
+      padding-block .25s ease;
+  }
+
+
   .nav a {
-    padding: 10px 12px;
+    width: 100%;           /* take full width for easy tapping */
+    max-width: 240px;      /* but not too wide on larger phones */
+    padding: 12px 16px;
     border-radius: 10px;
-    border: 1px solid color-mix(in srgb, var(--muted) 18%, transparent);
     background: color-mix(in srgb, var(--surface) 96%, white 4%);
+    border: 1px solid color-mix(in srgb, var(--muted) 18%, transparent);
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .nav a:hover {
+    background: color-mix(in srgb, var(--accent) 15%, var(--surface) 85%);
   }
 }
 
-.glightbox{
-
-  width:300px;
-
+body.lb-lock {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  /* keep layout stable when the iOS URL bar hides/shows */
+  inset: 0 0 auto 0;
 }
