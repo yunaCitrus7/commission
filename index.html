@@ -14,19 +14,25 @@
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav" role="navigation" aria-label="Main">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> Citrusoda Commissions</div>
-      <nav class="links">
-        <a href="#process">Process</a>
-        <a href="#samples">Samples</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#usage">Usage</a>
-        <a href="#tos">ToS</a>
-        <a href="#contact">Contact</a>
-        
-      </nav>
-    </div>
-  </header>
+  <div class="navbar container">
+    <h1 class="brand">Citrusoda Commissions</h1>
+
+    <!-- Hamburger (shown on mobile) -->
+    <button class="hamburger" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primaryNav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <!-- Primary nav -->
+    <nav class="nav" id="primaryNav">
+      <a href="#process">Process</a>
+      <a href="#samples">Samples</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#usage">Usage</a>
+      <a href="#tos">ToS</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
   <main>
 	  <section id="about" class="container">

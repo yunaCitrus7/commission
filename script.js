@@ -64,3 +64,41 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 });
+
+
+
+// Mobile nav toggle + anchor offset reuse
+document.addEventListener('DOMContentLoaded', () => {
+  const header = document.querySelector('.site-header');
+  const nav = document.getElementById('primaryNav');
+  const btn = document.getElementById('navToggle');
+
+  // Keep anchor links clear of the header height
+  const setOffset = () =>
+    document.documentElement.style.setProperty('--sticky-offset', (header?.offsetHeight || 64) + 'px');
+  setOffset();
+  window.addEventListener('resize', setOffset);
+
+  if (btn && nav) {
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+      document.body.style.overflow = !open ? 'hidden' : ''; // lock scroll when menu open
+    });
+    // Close menu when a link is clicked
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      btn.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }));
+    // Close on Esc
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        btn.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+});
