@@ -1,8 +1,7 @@
 /* Simple EN-only theme (no i18n, no form) */
 :root{
-  --bg: #0f0f12; --surface: #15161a; --text: #f7f7fb; --muted: #b9bcc6;
-  --accent: #ffd166; --accent-2: #ff8c42; --ring:#ffe29a; --link:#8ab4ff;
-  --shadow: 0 10px 30px rgba(0,0,0,.35); --radius:16px; --grid: min(1100px,92vw);
+  --bg:#fafafa; --surface:#ffffff; --text:#121315; --muted:#495060;
+  --accent:#ffb703; --accent-2:#fb8500; --ring:#ffd166; --link:#1e66f5; --shadow:0 10px 24px rgba(0,0,0,.08); --radius:16px; --grid: min(1100px,92vw);
 }
 [data-theme="light"]{
   --bg:#fafafa; --surface:#ffffff; --text:#121315; --muted:#495060;
