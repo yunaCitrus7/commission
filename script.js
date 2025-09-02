@@ -25,6 +25,7 @@
   if (window.GLightbox) GLightbox({ selector: '.glightbox' });
 })();
 
+
 document.addEventListener('DOMContentLoaded', function () {
   if (!window.Splide) return;
   document.querySelectorAll('.splide.mini-splide').forEach(function (el) {
@@ -41,6 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }).mount();
   });
 });
+
 
 
 // Robust sticky header: add fixed fallback + anchor offset
