@@ -477,10 +477,12 @@ body.lb-lock .site-header { position: fixed; left: 0; right: 0; top: 0; }
 .announcement .ann-card{
   display:flex; align-items:center; gap:12px;
   border-left: 4px solid var(--accent);
-  padding-block: 14px;
+  padding-block: 15px;
 }
 .announcement .ann-card .fa-bullhorn{
   font-size: 22px;
   color: var(--accent-2);
 }
 .announcement .ann-text{ margin:6px 0 0; font-weight:600; }
+
+
